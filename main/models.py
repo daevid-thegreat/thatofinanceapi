@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-from thatofinanceapi.thatofinanceapi.settings import AUTH_USER_MODEL
+from thatofinanceapi.settings import AUTH_USER_MODEL
 
 User = AUTH_USER_MODEL
 
@@ -41,13 +41,14 @@ class LoanApplication(models.Model):
     account_number = models.CharField(max_length=100)
     account_holder = models.CharField(max_length=100)
     branch_code = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, default="Pending")
 
     def __str__(self):
         return self.loan_amount
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password):
         if not email:
             raise ValueError('Users must have an email address')
         user = self.model(email=self.normalize_email(email))
@@ -66,13 +67,6 @@ class CustomUserManager(BaseUserManager):
 class Userprofile(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=150)
     email = models.EmailField(max_length=100, unique=True)
-
-    tel = models.CharField(max_length=100)
-
-    is_master = models.BooleanField(default=False)
-    is_verified = models.BooleanField(default=False)
-
-    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

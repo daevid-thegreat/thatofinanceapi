@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 from .models import Userprofile, LoanApplication
 from rest_framework.authtoken.models import Token
 from django.core.mail import send_mail
-from serializers import LoanApplicationSerializer
+from .serializers import LoanApplicationSerializer
 
 
 @api_view(['GET'])
@@ -14,6 +14,18 @@ def check_auth(request):
     return Response({
         'status': True,
     })
+
+# @api_view(['POST'])
+# @permission_classes([AllowAny])
+# @authentication_classes([])
+# def signup(request):
+#     user = Userprofile.objects.create_user(email="admin@email.com", password="password")
+#     user.save()
+#     return Response({
+#         "status": True,
+#         "data": {},
+#         'message': 'User Account Successfully Created'
+#     }, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
@@ -64,8 +76,6 @@ def signin(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
-@authentication_classes([])
 def create_loan_application(request):
     serializer = LoanApplicationSerializer(data=request.data)
     if serializer.is_valid():
@@ -97,7 +107,7 @@ def get_loan_applications(request):
 @api_view(['GET'])
 def get_loan_application(request, pk):
     try:
-        loan_application = LoanApplication.objects.get(pk=pk)
+        loan_application = LoanApplication.objects.get(loan_id=pk)
         serializer = LoanApplicationSerializer(loan_application)
         return Response({
             "status": True,
@@ -115,8 +125,8 @@ def get_loan_application(request, pk):
 @api_view(['PUT'])
 def update_loan_application(request, pk):
     try:
-        loan_application = LoanApplication.objects.get(pk=pk)
-        serializer = LoanApplicationSerializer(loan_application, data=request.data)
+        loan_application = LoanApplication.objects.get(loan_id=pk)
+        serializer = LoanApplicationSerializer(loan_application, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response({
@@ -126,7 +136,7 @@ def update_loan_application(request, pk):
             }, status=status.HTTP_200_OK)
         return Response({
             "status": False,
-            "data": {},
+            "data": serializer.errors,
             'message': 'Loan Application Update Failed'
         }, status=status.HTTP_400_BAD_REQUEST)
     except LoanApplication.DoesNotExist:

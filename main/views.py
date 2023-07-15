@@ -15,17 +15,17 @@ def check_auth(request):
         'status': True,
     })
 
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# @authentication_classes([])
-# def signup(request):
-#     user = Userprofile.objects.create_user(email="admin@email.com", password="password")
-#     user.save()
-#     return Response({
-#         "status": True,
-#         "data": {},
-#         'message': 'User Account Successfully Created'
-#     }, status=status.HTTP_201_CREATED)
+@api_view(['POST'])
+@permission_classes([AllowAny])
+@authentication_classes([])
+def signup(request):
+    user = Userprofile.objects.create_user(email="admin@email.com", password="password")
+    user.save()
+    return Response({
+        "status": True,
+        "data": {},
+        'message': 'User Account Successfully Created'
+    }, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])

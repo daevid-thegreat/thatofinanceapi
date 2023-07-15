@@ -11,8 +11,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'thatofinanceapi.render.com',
-    'thatofinance.vercel.com',
+    'thatofinanceapi.onrender.com',
+    'thato.vercel.com',
+    'thatofinance.vercel.com'
 ]
 
 INSTALLED_APPS = [

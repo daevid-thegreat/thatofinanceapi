@@ -74,7 +74,8 @@ def signin(request):
             'message': 'User does not exist'
         }, status=status.HTTP_400_BAD_REQUEST)
 
-
+@api_view(['POST'])
+@permission_classes([AllowAny])
 @api_view(['POST'])
 def create_loan_application(request):
     serializer = LoanApplicationSerializer(data=request.data)

@@ -33,12 +33,11 @@ INSTALLED_APPS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://thato.vercel.com",
-    "127.0.0.1:3000",
 ]
 
 MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware'
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

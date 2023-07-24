@@ -17,6 +17,7 @@ class LoanApplication(models.Model):
     loan_term = models.IntegerField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
     Id_number = models.CharField(max_length=100)
     marital_status = models.CharField(max_length=100)
     marital_property = models.CharField(max_length=100)
@@ -27,6 +28,7 @@ class LoanApplication(models.Model):
     dependants = models.IntegerField()
     race = models.CharField(max_length=100)
     employer = models.CharField(max_length=100)
+    employment_type = models.CharField(max_length=100)
     length_of_employment = models.IntegerField()
     employee_number = models.CharField(max_length=100)
     salary = models.CharField(max_length=100)
@@ -42,6 +44,7 @@ class LoanApplication(models.Model):
     account_holder = models.CharField(max_length=100)
     branch_code = models.CharField(max_length=100)
     status = models.CharField(max_length=100, default="Pending")
+
 
     def __str__(self):
         return self.loan_amount

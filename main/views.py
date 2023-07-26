@@ -90,7 +90,8 @@ def create_loan_application(request):
     return Response({
         "status": False,
         "data": {},
-        'message': 'Loan Application Creation Failed'
+        'message': 'Loan Application Creation Failed',
+        'errors': serializer.errors
     }, status=status.HTTP_400_BAD_REQUEST)
 
 

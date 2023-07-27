@@ -132,11 +132,19 @@ def update_loan_application(request, pk):
         serializer = LoanApplicationSerializer(loan_application, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response({
-                "status": True,
-                "data": serializer.data,
-                'message': 'Loan Application Successfully Updated'
-            }, status=status.HTTP_200_OK)
+            app_status = serializer.data.get('status')
+            if app_status == "Approved":
+                return Response({
+                    "status": True,
+                    "data": serializer.data,
+                    'message': 'Loan Application Approved'
+                }, status=app_status.HTTP_200_OK)
+            elif app_status == "Declined":
+                return Response({
+                    "status": True,
+                    "data": serializer.data,
+                    'message': 'Loan Application Declined'
+                }, status=app_status.HTTP_200_OK)
         return Response({
             "status": False,
             "data": serializer.errors,

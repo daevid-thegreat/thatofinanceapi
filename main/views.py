@@ -138,13 +138,13 @@ def update_loan_application(request, pk):
                     "status": True,
                     "data": serializer.data,
                     'message': 'Loan Application Approved'
-                }, status=app_status.HTTP_200_OK)
+                }, status=status.HTTP_200_OK)
             elif app_status == "Declined":
                 return Response({
                     "status": True,
                     "data": serializer.data,
                     'message': 'Loan Application Declined'
-                }, status=app_status.HTTP_200_OK)
+                }, status=status.HTTP_200_OK)
         return Response({
             "status": False,
             "data": serializer.errors,

@@ -125,7 +125,7 @@ def get_loan_application(request, pk):
         }, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
+@api_view(['PATCH'])
 def update_loan_application(request, pk):
     try:
         loan_application = LoanApplication.objects.get(loan_id=pk)

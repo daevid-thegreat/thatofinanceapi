@@ -45,6 +45,9 @@ class LoanApplication(models.Model):
     branch_code = models.CharField(max_length=100)
     status = models.CharField(max_length=100, default="Pending")
 
+    id_document = models.FileField(upload_to='documents/')
+    payslip = models.FileField(upload_to='documents/')
+    bank_statement = models.FileField(upload_to='documents/')
 
     def __str__(self):
         return self.loan_amount

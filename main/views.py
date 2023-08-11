@@ -15,6 +15,7 @@ def check_auth(request):
         'status': True,
     })
 
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @authentication_classes([])
@@ -106,7 +107,6 @@ def get_loan_applications(request):
     }, status=status.HTTP_200_OK)
 
 
-
 @api_view(['GET'])
 def get_loan_application(request, pk):
     try:
@@ -156,5 +156,3 @@ def update_loan_application(request, pk):
             "data": {},
             'message': 'Loan Application Does Not Exist'
         }, status=status.HTTP_400_BAD_REQUEST)
-
-

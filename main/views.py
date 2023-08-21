@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, authentication_classes, parser_classes
-from rest_framework.parsers import MultiPartParser
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import AllowAny
@@ -80,7 +80,7 @@ def signin(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @authentication_classes([])
-@parser_classes([MultiPartParser])
+@parser_classes([MultiPartParser, FormParser])
 def create_loan_application(request):
     print(request)
     query_dict = request.data
@@ -95,7 +95,7 @@ def create_loan_application(request):
     Id_number = query_dict.get('Id_number')
     marital_status = query_dict.get('marital_status')
     marital_property = query_dict.get('marital_property')
-    gender = query_dict.get('marital_property')
+    gender = query_dict.get('gender')
     cell = query_dict.get('cell')
     whatsapp = query_dict.get('whatsapp')
     email = query_dict.get('email')

@@ -1,5 +1,6 @@
 from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes, authentication_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes, parser_classes
+from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 from rest_framework.permissions import AllowAny
@@ -79,6 +80,7 @@ def signin(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 @authentication_classes([])
+@parser_classes([MultiPartParser])
 def create_loan_application(request):
     serializer = LoanApplicationSerializer(data=request.data)
     if serializer.is_valid():

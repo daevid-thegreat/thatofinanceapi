@@ -82,8 +82,81 @@ def signin(request):
 @authentication_classes([])
 @parser_classes([MultiPartParser])
 def create_loan_application(request):
-    print(request.data)
-    serializer = LoanApplicationSerializer(data=request.data)
+    query_dict = request.data
+
+    loan_type = query_dict.get('loan_type')
+    loan_amount = query_dict.get('loan_amount')
+    loan_term = query_dict.get('loan_term')
+    first_name = query_dict.get('first_name')
+    last_name = query_dict.get('last_name')
+    address = query_dict.get('address')
+    Id_number = query_dict.get('Id_number')
+    marital_status = query_dict.get('marital_status')
+    marital_property = query_dict.get('marital_property')
+    gender = query_dict.get('marital_property')
+    cell = query_dict.get('cell')
+    whatsapp = query_dict.get('whatsapp')
+    email = query_dict.get('email')
+    dependants = query_dict.get('dependants')
+    race = query_dict.get('race')
+    employer = query_dict.get('employer')
+    employment_type = query_dict.get('employment_type')
+    length_of_employment = query_dict.get('length_of_employment')
+    employee_number = query_dict.get('employee_number')
+    salary = query_dict.get('salary')
+    emp_telephone = query_dict.get('emp_telephone')
+    emp_email = query_dict.get('emp_email')
+    net_income = query_dict.get('net_income')
+    basic_income = query_dict.get('basic_income')
+    living_expenses = query_dict.get('living_expenses')
+    monthly_loan_repayments = query_dict.get('monthly_loan_repayments')
+    total_expenses = query_dict.get('total_expenses')
+    bank_name = query_dict.get('bank_name')
+    account_number = query_dict.get('account_number')
+    account_holder = query_dict.get('account_holder')
+    branch_code = query_dict.get('branch_code')
+
+    id_document = query_dict.get('id_document')
+    payslip = query_dict.get('payslip')
+    bank_statement = query_dict.get('bank_statement')
+
+    serializer = LoanApplicationSerializer(data={
+        "loan_type": loan_type,
+        "loan_amount": loan_amount,
+        "loan_term": loan_term,
+        "first_name": first_name,
+        "last_name": last_name,
+        "gender": gender,
+        "cell": cell,
+        "whatsapp": whatsapp,
+        "email": email,
+        "dependants": dependants,
+        "address": address,
+        "Id_number": Id_number,
+        "marital_status": marital_status,
+        "marital_property": marital_property,
+        "race": race,
+        "employer": employer,
+        "employment_type": employment_type,
+        "length_of_employment": length_of_employment,
+        "employee_number": employee_number,
+        "salary": salary,
+        "emp_telephone": emp_telephone,
+        "emp_email": emp_email,
+        "net_income": net_income,
+        "basic_income": basic_income,
+        "living_expenses": living_expenses,
+        "monthly_loan_repayments": monthly_loan_repayments,
+        "total_expenses": total_expenses,
+        "bank_name": bank_name,
+        "account_number": account_number,
+        "account_holder": account_holder,
+        "branch_code": branch_code,
+        "id_document": id_document,
+        "payslip": payslip,
+        "bank_statement": bank_statement,
+
+    })
     if serializer.is_valid():
         serializer.save()
         return Response({

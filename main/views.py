@@ -82,6 +82,8 @@ def signin(request):
 @authentication_classes([])
 @parser_classes([MultiPartParser])
 def create_loan_application(request):
+    print(request.data)
+    print(request.data.loan_type)
     serializer = LoanApplicationSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -92,7 +94,6 @@ def create_loan_application(request):
         }, status=status.HTTP_201_CREATED)
     return Response({
         "status": False,
-        "data": {},
         'message': 'Loan Application Creation Failed',
         'errors': serializer.errors
     }, status=status.HTTP_400_BAD_REQUEST)

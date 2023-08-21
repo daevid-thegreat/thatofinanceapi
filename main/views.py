@@ -83,7 +83,6 @@ def signin(request):
 @parser_classes([MultiPartParser])
 def create_loan_application(request):
     print(request.data)
-    print(request.data.loan_type)
     serializer = LoanApplicationSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()

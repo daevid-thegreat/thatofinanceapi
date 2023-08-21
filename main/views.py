@@ -82,7 +82,9 @@ def signin(request):
 @authentication_classes([])
 @parser_classes([MultiPartParser])
 def create_loan_application(request):
+    print(request)
     query_dict = request.data
+    print(query_dict)
 
     loan_type = query_dict.get('loan_type')
     loan_amount = query_dict.get('loan_amount')

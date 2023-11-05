@@ -1,13 +1,15 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-tg20=7lrta_c(us#vlz+)0icuebx(*bm!j@k(qh)_ytt-i#$!^'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -85,7 +87,7 @@ WSGI_APPLICATION = 'thatofinanceapi.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://postgres:AcsfDCivkLMBEkG3ewft@containers-us-west-87.railway.app:6623/railway'
+        default=os.getenv('db_url')
     )
 }
 

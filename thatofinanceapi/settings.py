@@ -36,6 +36,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:3001",
     "https://thato.vercel.com",
+    "https://thato-five.vercel.app"
 ]
 
 MIDDLEWARE = [

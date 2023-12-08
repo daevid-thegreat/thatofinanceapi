@@ -21,7 +21,7 @@ def check_auth(request):
 @permission_classes([AllowAny])
 @authentication_classes([])
 def signup(request):
-    user = Userprofile.objects.create_user(email="admin@email.com", password="password")
+    user = Userprofile.objects.create_user(email="mzwakhe.tsotetsi@thatofinance", password="thato@18189+")
     user.save()
     return Response({
         "status": True,
